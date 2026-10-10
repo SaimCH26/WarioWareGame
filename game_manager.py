@@ -3,6 +3,7 @@ import random
 import pygame
 
 from minigames.flappy_gap import FlappyGap
+from minigames.shooting_gallery import ShootingGallery
 
 # The manager is always in exactly one of these states (a simple state machine)
 READY = "ready"          # shows the instruction word
@@ -19,7 +20,8 @@ class GameManager:
         self.font = pygame.font.Font(None, 48)
 
         # Add new minigame classes to this list as you build them
-        self.minigame_classes = [FlappyGap]
+        self.minigame_classes = [FlappyGap, ShootingGallery]
+        
 
         self.reset()
 
