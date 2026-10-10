@@ -42,7 +42,7 @@ class FlappyGap(Minigame):
     instruction = "FLY!"
 
     def __init__(self, width, height):
-        super().__init__(width, height, duration=5.0)
+        super().__init__(width, height, duration=15.0)
 
         # the bird
         self.bird_x = 150
@@ -55,7 +55,7 @@ class FlappyGap(Minigame):
         self.pillars = []
         gap_center = height / 2 + random.randint(-100, 100)
         x = width + 50
-        for _ in range(5):
+        for _ in range(15):
             self.pillars.append(Pillar(x, gap_center, height))
             x += 320
             gap_center += random.randint(-130, 130)
