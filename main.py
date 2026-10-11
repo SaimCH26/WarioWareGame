@@ -1,3 +1,5 @@
+import asyncio
+
 import pygame
 
 from game_manager import GameManager
@@ -11,24 +13,26 @@ clock = pygame.time.Clock()
 
 manager = GameManager(screen)
 
-running = True
-while running:
-    # dt = seconds since the last frame (tick returns milliseconds)
-    dt = clock.tick(60) / 1000
 
-    # 1. Handle input
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        else:
-            manager.handle_event(event)
+async def main():
+    running = True
+    while running:
+        dt = clock.tick(60) / 1000
 
-    # 2. Update game state
-    manager.update(dt)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            else:
+                manager.handle_event(event)
 
-    # 3. Draw
-    manager.draw()
-    pygame.display.flip()
+        manager.update(dt)
+        manager.draw()
+        pygame.display.flip()
 
-pygame.quit()
+        await asyncio.sleep(0)   # give control back to the browser every frame
+
+    pygame.quit()
+
+
+asyncio.run(main())
 
